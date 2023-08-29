@@ -16,4 +16,5 @@ public class Kitchen {
 	@Id
 	private Integer id;
 	private String name;
+	
 }
