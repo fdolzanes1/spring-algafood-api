@@ -7,20 +7,20 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
 
 import com.dolzanes.algafood.SpringAlgafoodApiApplication;
-import com.dolzanes.algafood.domain.repository.KitchenRepository;
-import com.dolzanes.algafood.model.Kitchen;
+import com.dolzanes.algafood.domain.repository.PermissionRepository;
+import com.dolzanes.algafood.model.Permission;
 
-public class GetKitchenMain {
+public class GetPermissionMain {
 
 	public static void main(String[] args) {
 		ApplicationContext applicationContext = new SpringApplicationBuilder(SpringAlgafoodApiApplication.class).web(WebApplicationType.NONE).run(args);
 		
-		KitchenRepository getKitchen = applicationContext.getBean(KitchenRepository.class);
+		PermissionRepository repository = applicationContext.getBean(PermissionRepository.class);
 		
-		List<Kitchen> kitchens = getKitchen.getAll();
+		List<Permission> permissions = repository.getAll();
 		
-		for (Kitchen kitchen: kitchens) {
-			System.out.println("Kitchen: "+kitchen.getId()+" - "+kitchen.getName());
+		for (Permission permission: permissions) {
+			System.out.println("Permission: "+permission.getId()+" - "+permission.getName()+" - "+permission.getDescription());
 		}
 	}
 

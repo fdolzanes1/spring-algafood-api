@@ -7,20 +7,20 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
 
 import com.dolzanes.algafood.SpringAlgafoodApiApplication;
-import com.dolzanes.algafood.domain.repository.KitchenRepository;
-import com.dolzanes.algafood.model.Kitchen;
+import com.dolzanes.algafood.domain.repository.PaymentMethodRepository;
+import com.dolzanes.algafood.model.PaymentMethod;
 
-public class GetKitchenMain {
+public class GetPaymentMethodMain {
 
 	public static void main(String[] args) {
 		ApplicationContext applicationContext = new SpringApplicationBuilder(SpringAlgafoodApiApplication.class).web(WebApplicationType.NONE).run(args);
 		
-		KitchenRepository getKitchen = applicationContext.getBean(KitchenRepository.class);
+		PaymentMethodRepository repository = applicationContext.getBean(PaymentMethodRepository.class);
 		
-		List<Kitchen> kitchens = getKitchen.getAll();
+		List<PaymentMethod> payments = repository.getAll();
 		
-		for (Kitchen kitchen: kitchens) {
-			System.out.println("Kitchen: "+kitchen.getId()+" - "+kitchen.getName());
+		for (PaymentMethod payment: payments) {
+			System.out.println("Payment Method: "+payment.getId()+" - "+payment.getDescription());
 		}
 	}
 

@@ -7,20 +7,20 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
 
 import com.dolzanes.algafood.SpringAlgafoodApiApplication;
-import com.dolzanes.algafood.domain.repository.KitchenRepository;
-import com.dolzanes.algafood.model.Kitchen;
+import com.dolzanes.algafood.domain.repository.RestaurantRepository;
+import com.dolzanes.algafood.model.Restaurant;
 
-public class GetKitchenMain {
+public class GetRestaurantMain {
 
 	public static void main(String[] args) {
 		ApplicationContext applicationContext = new SpringApplicationBuilder(SpringAlgafoodApiApplication.class).web(WebApplicationType.NONE).run(args);
 		
-		KitchenRepository getKitchen = applicationContext.getBean(KitchenRepository.class);
+		RestaurantRepository repository = applicationContext.getBean(RestaurantRepository.class);
 		
-		List<Kitchen> kitchens = getKitchen.getAll();
+		List<Restaurant> restaurants = repository.getAll();
 		
-		for (Kitchen kitchen: kitchens) {
-			System.out.println("Kitchen: "+kitchen.getId()+" - "+kitchen.getName());
+		for (Restaurant restaurant: restaurants) {
+			System.out.println("Restaurant: "+restaurant.getId()+" - "+restaurant.getName()+" - Kitchen: "+restaurant.getKitchen().getName());
 		}
 	}
 

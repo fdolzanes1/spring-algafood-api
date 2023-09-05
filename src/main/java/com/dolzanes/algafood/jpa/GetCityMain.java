@@ -7,20 +7,20 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
 
 import com.dolzanes.algafood.SpringAlgafoodApiApplication;
-import com.dolzanes.algafood.domain.repository.KitchenRepository;
-import com.dolzanes.algafood.model.Kitchen;
+import com.dolzanes.algafood.domain.repository.CityRepository;
+import com.dolzanes.algafood.model.City;
 
-public class GetKitchenMain {
+public class GetCityMain {
 
 	public static void main(String[] args) {
 		ApplicationContext applicationContext = new SpringApplicationBuilder(SpringAlgafoodApiApplication.class).web(WebApplicationType.NONE).run(args);
 		
-		KitchenRepository getKitchen = applicationContext.getBean(KitchenRepository.class);
+		CityRepository repository = applicationContext.getBean(CityRepository.class);
 		
-		List<Kitchen> kitchens = getKitchen.getAll();
+		List<City> cities = repository.getAll();
 		
-		for (Kitchen kitchen: kitchens) {
-			System.out.println("Kitchen: "+kitchen.getId()+" - "+kitchen.getName());
+		for (City city: cities) {
+			System.out.println("City: "+city.getId()+" - "+city.getName());
 		}
 	}
 
